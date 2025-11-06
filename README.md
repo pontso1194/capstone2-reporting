@@ -44,17 +44,27 @@ The core of the project is the Gemini prompt, engineered to produce reliable, fo
 # AI Prompt Key Instruction
 "...The report must be formatted using clean, standard HTML for direct email embedding. Do not use Markdown syntax. Use appropriate tags like <h1>, <h2>, and <table>."
 
-🛡️ Stability and Validation
-The workflow is designed for robustness:NodeFunctionRationale
-**IF Node ❓** Checks if $json.text (AI Output) is not empty.Prevents blank emails from being sent to executives.
-**Fallback Node 🚨** Sends an immediate Slack/Email alert on the False path.Ensures the team is notified instantly if the automation fails, enabling quick manual intervention.
-**Node Retries** Configured on the Data Source, Gemini, and Email Nodes.Handles transient failures (network errors, rate limits) without stopping the workflow.
+### 🛡️ Stability and Validation
 
-Getting Started
-Download the Blueprint: Download the AI-Powered-Report-Generation.json file from this repository.
+The workflow is designed for robustness and error handling to maintain a stable automation flow:
 
-Import: Import the JSON file directly into your self-hosted or cloud n8n instance.
+| Node | Function | Rationale |
+| :--- | :--- | :--- |
+| **IF Node** ❓ | Checks if `$json.text` (AI Output) **is not empty**. | Prevents blank emails from being sent to executives by validating the AI's output before delivery. |
+| **Fallback Node** 🚨 | Sends an immediate Slack/Email alert on the **False** path. | Ensures the team is notified instantly if the automation fails, enabling quick manual intervention. |
+| **Node Retries** | Configured on the Data Source, Gemini, and Email Nodes. | Handles transient failures (network errors, API rate limits) without stopping the workflow. |
 
-Credentials: Update the credentials for the Data Source Node, Google Gemini Node, and the Email Node with your specific API keys and accounts.
+---
 
-Run: Manually execute the workflow once to confirm all connections are working before letting the Schedule Node take over.
+### 🗃️ Export to Sheets (Structured Output)
+
+A final step in the workflow ensures the AI-generated data (Summary, Triage Action) is written to a structured source (Google Sheets/Airtable) to maintain a persistent and searchable record of all reports.
+
+---
+
+## 4. Getting Started
+
+1.  **Download the Blueprint:** Download the `AI-Powered-Report-Generation.json` file from this repository.
+2.  **Import:** Import the JSON file directly into your self-hosted or cloud n8n instance.
+3.  **Credentials:** Update the credentials for the **Data Source Node**, **Google Gemini Node**, and the **Email Node** with your specific API keys and accounts.
+4.  **Run:** Manually execute the workflow once to confirm all connections are working before letting the **Schedule Node** take over.
