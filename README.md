@@ -40,6 +40,9 @@ The core of the project is the Gemini prompt, engineered to produce reliable, fo
 1.  **Direct HTML Output:** The prompt explicitly mandates **HTML formatting** to bypass issues with Markdown rendering in email clients.
 2.  **Persona:** The AI is instructed to act as an "Expert Business Analyst" to ensure a professional tone.
 
+    ### AI Prompt Key Instruction
+"...The report must be formatted using clean, standard HTML for direct email embedding. Do not use Markdown syntax. Use appropriate tags like <h1>, <h2>, and <table>."
+
 
 ### 🛡️ Stability and Validation
 
